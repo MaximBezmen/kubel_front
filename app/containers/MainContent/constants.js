@@ -1,1 +1,1 @@
-export const GET_MANAGERS = 'app/MainContent/GET_MANAGERS';
+export const GET_ADS = 'app/MainContent/GET_ADS';

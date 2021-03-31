@@ -1,4 +1,5 @@
 import { createRoutine } from 'redux-saga-routines';
-import { GET_MANAGERS } from './constants';
+// eslint-disable-next-line import/named
+import { GET_ADS } from './constants';
 
-export const getManagersAction = createRoutine(GET_MANAGERS);
+export const getAdsAction = createRoutine(GET_ADS);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -7,6 +7,11 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Hidden from '@material-ui/core/Hidden';
 import Avatar from '@material-ui/core/Avatar';
+import { useHistory } from 'react-router-dom';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import { routes } from '../../constants/routes';
+import { useAuthDataContext } from '../../auth/AuthDataProvider';
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -47,25 +52,27 @@ const useStyles = makeStyles(theme => ({
 
 const Header = ({ handleToggle }) => {
   const classes = useStyles();
-  // const [anchorEl, setAnchorEl] = useState(null);
-  // const open = Boolean(anchorEl);
-  // const { user, onLogout } = useAuthDataContext();
-  // const activeUser = user;
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const { user, onLogout } = useAuthDataContext();
+  const activeUser = user;
+  const history = useHistory();
 
-  // const { firstName, lastName, picture } = activeUser;
-  // const fullName = [firstName, lastName].join(' ');
-  const fullName = 'Имя юзера';
-  const handleMenu = () => {
-    // setAnchorEl(event.currentTarget);
+  const { firstName, lastName } = activeUser;
+  const fullName = [firstName, lastName].join(' ');
+  // const fullName = 'Имя юзера';
+  const handleMenu = event => {
+    setAnchorEl(event.currentTarget);
   };
 
-  // const handleClose = () => {
-  //   setAnchorEl(null);
-  // };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
-  // const handleLogout = () => {
-  //   onLogout();
-  // };
+  const handleLogout = () => {
+    onLogout();
+    history.push(routes.SIGN_IN);
+  };
 
   return (
     <React.Fragment>
@@ -87,40 +94,40 @@ const Header = ({ handleToggle }) => {
             {/*  <img src={logotype} alt={logotype} className={classes.image} /> */}
             {/* </Link> */}
           </div>
-          {/* {activeUser && ( */}
-          <div>
-            {fullName}
-            <IconButton
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleMenu}
-              color="inherit"
-            >
-              <Avatar
-                alt={fullName}
-                // src={picture}
-              />
-            </IconButton>
-            {/* <Menu */}
-            {/*  id="menu-appbar" */}
-            {/*  anchorEl={anchorEl} */}
-            {/*  anchorOrigin={{ */}
-            {/*    vertical: 'top', */}
-            {/*    horizontal: 'right', */}
-            {/*  }} */}
-            {/*  keepMounted */}
-            {/*  transformOrigin={{ */}
-            {/*    vertical: 'top', */}
-            {/*    horizontal: 'right', */}
-            {/*  }} */}
-            {/*  open={open} */}
-            {/*  onClose={handleClose} */}
-            {/* > */}
-            {/* <MenuItem onClick={handleLogout}>Logout</MenuItem> */}
-            {/* </Menu> */}
-          </div>
-          {/* )} */}
+          {activeUser && (
+            <div>
+              {fullName}
+              <IconButton
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <Avatar
+                  alt={fullName}
+                  // src={picture}
+                />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={open}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
+              </Menu>
+            </div>
+          )}
         </Toolbar>
       </AppBar>
     </React.Fragment>

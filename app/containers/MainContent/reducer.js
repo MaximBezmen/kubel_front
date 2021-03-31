@@ -1,5 +1,5 @@
 import produce from 'immer';
-import { getManagersAction } from './actions';
+import { getAdsAction } from './actions';
 import {
   genericReducer,
   namedListParams,
@@ -8,16 +8,16 @@ import {
 export const key = 'mainContent';
 
 export const initialState = {
-  managers: namedListParams('managers'),
+  ads: namedListParams('ads'),
 };
 
 const mainContentReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case getManagersAction.REQUEST:
-      case getManagersAction.SUCCESS:
-      case getManagersAction.FAILURE:
-        genericReducer(state, draft, action, initialState.managers.name);
+      case getAdsAction.REQUEST:
+      case getAdsAction.SUCCESS:
+      case getAdsAction.FAILURE:
+        genericReducer(state, draft, action, initialState.ads.name);
         break;
       default:
         break;

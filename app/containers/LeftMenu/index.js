@@ -10,7 +10,7 @@ import Hidden from '@material-ui/core/Hidden';
 import Drawer from '@material-ui/core/Drawer';
 import PropTypes from 'prop-types';
 import Toolbar from '@material-ui/core/Toolbar';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import messages from './messages';
 import { routes } from '../../constants/routes';
 import { useAuthDataContext } from '../../auth/AuthDataProvider';
@@ -42,8 +42,10 @@ const LeftMenu = ({ window, handleDrawerToggle, mobileOpen }) => {
   const location = useLocation();
   const { pathname } = location;
   const { onLogout } = useAuthDataContext();
+  const history = useHistory();
   const handleLogout = () => {
     onLogout();
+    history.push(routes.SIGN_IN);
   };
 
   const isSelected = path => pathname === path;

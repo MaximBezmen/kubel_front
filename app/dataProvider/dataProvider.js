@@ -112,6 +112,12 @@ export default (apiUrl, httpClient = fetchJson) => ({
       body: JSON.stringify(params.data),
     }).then(({ json }) => formatResponseToEntity(json)),
 
+  createOne: (resource, params) =>
+    httpClient(`${apiUrl}/${resource}`, {
+      method: 'POST',
+      body: JSON.stringify(params.data),
+    }).then(json => json),
+
   delete: (resource, params) =>
     httpClient(`${apiUrl}/${resource}/${params.id}`, {
       method: 'DELETE',

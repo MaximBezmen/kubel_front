@@ -20,6 +20,10 @@ export function create(endpoint, data) {
   return Provider.create(endpoint, { data });
 }
 
+export function createOne(endpoint, data) {
+  return Provider.createOne(endpoint, { data });
+}
+
 export function deleteOne(endpoint, id, params) {
   return Provider.delete(endpoint, endpoint, {
     id,

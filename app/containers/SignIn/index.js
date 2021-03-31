@@ -4,11 +4,10 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import SignInForm from '../SigninForm';
 import { SIGN_IN } from '../../constants/endpoints';
-import { createEntityAction } from '../App/actions';
-import { signInAction } from './actions';
+import { useAuthDataContext } from '../../auth/AuthDataProvider';
+import { createOne } from '../../dataProvider/API';
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -28,19 +27,28 @@ const useStyles = makeStyles(theme => ({
 export function SignIn() {
   const classes = useStyles();
   const history = useHistory();
-  const dispatch = useDispatch();
+  const { onLogin } = useAuthDataContext();
 
   const onEditUserFormSubmit = ({ ...data }) => {
-    const params = data;
-    const payload = {
-      endpoint: SIGN_IN,
-      sagaRoutine: signInAction,
-      params,
-      callback: () => {
-        history.push(`/ads`);
-      },
-    };
-    dispatch(createEntityAction(payload));
+    // const params = data;
+    // const payload = {
+    //   endpoint: SIGN_IN,
+    //   sagaRoutine: signInAction,
+    //   params,
+    //   callback: () => {
+    //     history.push(`/ads`);
+    //   },
+    // };
+    // dispatch(createEntityAction(payload));
+    createOne(SIGN_IN, data)
+      .then(r =>
+        // console.log(r),
+        onLogin({
+          id: r.body.split(' ')[0],
+          token: r.body.split(' ')[2],
+        }),
+      )
+      .then(history.push(`/ads`));
   };
 
   return (
