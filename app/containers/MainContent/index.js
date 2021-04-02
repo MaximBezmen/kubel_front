@@ -44,7 +44,7 @@ export function Ads() {
   const ads = useSelector(selectAds()).content;
   const adsCards = ads ? (
     ads.map(ad => (
-      <Grid item xs={12} sm={12} md={12} lg={6}>
+      <Grid item xs={12} sm={12} md={12} lg={6} key={ad.id}>
         <Card className={classes.root}>
           <div className={classes.title}>
             <h2>{ad.topic}</h2>

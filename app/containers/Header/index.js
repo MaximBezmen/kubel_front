@@ -58,9 +58,13 @@ const Header = ({ handleToggle }) => {
   const activeUser = user;
   const history = useHistory();
 
-  const { firstName, lastName } = activeUser;
-  const fullName = [firstName, lastName].join(' ');
-  // const fullName = 'Имя юзера';
+  let fullName = ' ';
+  // eslint-disable-next-line no-unused-expressions
+
+  if (activeUser) {
+    const { firstName, lastName } = activeUser;
+    fullName = [firstName, lastName].join(' ');
+  }
   const handleMenu = event => {
     setAnchorEl(event.currentTarget);
   };

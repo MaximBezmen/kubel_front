@@ -1,5 +1,4 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import PageTemplate from '../PageTemplate';
@@ -40,10 +39,7 @@ export function CreateAd() {
   };
 
   return (
-    <PageTemplate>
-      <Typography variant="h6" gutterBottom>
-        Новое объявление
-      </Typography>
+    <PageTemplate header="Новое объявление">
       <CreateAdForm
         onSubmit={onCreateStatementFormSubmit}
         isSendingUserData={isSendingUserData}

@@ -66,57 +66,13 @@ const LeftMenu = ({ window, handleDrawerToggle, mobileOpen }) => {
         </ListItem>
       </Link>
 
-      <Link to={routes.MY_ADS} className={classes.link}>
-        <ListItem button selected={isSelected(routes.MY_ADS)}>
-          <ListItemText primary={<FormattedMessage {...messages.usersAds} />} />
-        </ListItem>
-      </Link>
+      {/* <Link to={routes.MY_ADS} className={classes.link}> */}
+      {/*  <ListItem button selected={isSelected(routes.MY_ADS)}> */}
+      {/*    <ListItemText primary={<FormattedMessage {...messages.usersAds} />} /> */}
+      {/*  </ListItem> */}
+      {/* </Link> */}
     </>
   );
-
-  // function ConditionalMenu() {
-  //   if (role === roleTypes.USER) {
-  //     return <List>{defaultLinks}</List>;
-  //   }
-  //   if (role === roleTypes.MANAGER) {
-  //     return (
-  //       <List>
-  //         <Link to={routes.EMPTY_PAGE} className={classes.link}>
-  //           <ListItem button selected={isSelected(routes.EMPTY_PAGE)}>
-  //             <ListItemText
-  //               primary={<FormattedMessage {...messages.forSignature} />}
-  //             />
-  //           </ListItem>
-  //         </Link>
-  //
-  //         {defaultLinks}
-  //       </List>
-  //     );
-  //   }
-  //   if (role === roleTypes.ADMIN) {
-  //     return (
-  //       <List>
-  //         <Link to={routes.EMPTY_PAGE} className={classes.link}>
-  //           <ListItem button selected={isSelected(routes.EMPTY_PAGE)}>
-  //             <ListItemText
-  //               primary={<FormattedMessage {...messages.allAgreements} />}
-  //             />
-  //           </ListItem>
-  //         </Link>
-  //
-  //         <Link to={routes.EMPTY_PAGE} className={classes.link}>
-  //           <ListItem button selected={isSelected(routes.EMPTY_PAGE)}>
-  //             <ListItemText
-  //               primary={<FormattedMessage {...messages.employee} />}
-  //             />
-  //           </ListItem>
-  //         </Link>
-  //
-  //         {defaultLinks}
-  //       </List>
-  //     );
-  //   }
-  // }
 
   const drawer = (
     <div className={classes.drawerContainer}>
@@ -126,7 +82,6 @@ const LeftMenu = ({ window, handleDrawerToggle, mobileOpen }) => {
         </Typography>
       </Toolbar>
       <Divider />
-      {/* {ConditionalMenu()} */}
       {defaultLinks}
       <Divider />
       <List>
